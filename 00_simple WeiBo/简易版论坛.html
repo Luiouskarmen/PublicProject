@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>匿名版微博</title>
+  <style>
+    body {
+      background-image:url("C:\\Users\\HP\\Desktop\\Vue2\\mywork\\v2\\00_自己的练习作品\\9e01ecfe9c2b2eb1a1.jpg");
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-repeat: no-repeat;
+      background-size:cover;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .post-form {
+      margin-bottom: 20px;
+    }
+    .post-input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .post-button {
+      padding: 10px 15px;
+      background-color: #1da1f2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      border: #657786 2px solid;
+    }
+    .good-button {
+
+      border-radius: 5px;
+      padding: 1px 2px;
+      background-color: #f59724;
+      color: white;
+      border: none;
+      cursor: pointer;
+
+    }
+    .delete-button {
+      
+      border-radius: 5px;
+      padding: 1px 2px;
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border: #ff0000 2px solid;
+      margin-right: 100px;
+     }
+    .post-button:hover {
+      background-color: #1a91da;
+    }
+    .posts-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .post-item {
+      background-color: #f5f8fa;
+      border: 1px solid #e1e8ed;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+    .post-content {
+      margin-bottom: 10px;
+    }
+    .post-date {
+      color: #657786;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body> 
+  <div id="app" class="container">
+    <h1 style="color: rgb(231, 252, 1); font-size: 50px; letter-spacing:50px; text-indent: 30px; font-family:Cursive">匿名版微博</h1>
+    <div class="post-form">
+      <textarea v-model="newPostContent" placeholder="有什么新鲜事？" class="post-input"></textarea>
+      <button @click="addPost" class="post-button">发布</button>
+    </div>
+    <ul class="posts-list">
+      <li v-for="(post, index) in posts" :key="index" class="post-item">
+        <div class="post-content">{{ post.content }}</div>
+        <div class="post-date">{{ post.date }}</div>
+        <button @click="good" class="good-button"id="aaa">点赞</button>
+        <label for="aaa" :n="n">:{{n}}</label>
+        <span><button class="delete-button" @click="des(index)">删贴</button></span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Ensure Vue is loaded before the script that uses it -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        newPostContent: '',
+        posts: [],
+        n:0
+      },
+      methods: {
+        addPost() {
+          if (this.newPostContent.trim()) {
+            const currentDate = new Date().toLocaleString();
+            this.posts.unshift({ content: this.newPostContent, date: currentDate });
+            this.newPostContent = '';
+          }
+        },
+        good(){
+          alert("点赞成功")
+          this.n++
+        },
+        des(index){
+          alert("删除成功")
+          // 直接获取索引删除
+          this.posts.splice(index, 1);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+

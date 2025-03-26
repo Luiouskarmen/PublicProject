@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<body>
+    <div id="int">
+
+        <h1>论坛登录系统</h1>
+        <label for="aa">名：</label>
+        <input type="text" v-model="name" id="aa">
+        <br></br>
+        <label for="bb">姓：</label>
+        <input type="text" v-model="mane" id="bb" name="bb">
+        <br></br>
+        <label for="cc">密码:</label>
+        <input type="password" v-model="password" id="cc" name="cc">
+        <br></br>
+        <p>姓名：{{name+mane}}</p>
+        <br></br>
+        <button type="submit" @click="f">登录</button>
+
+
+
+    </form>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#int",
+        data:{
+            name:"karmen",
+            mane:"Luious",
+            password:""
+        },
+        methods:{
+            f(){
+                const mypassword="666666"
+                const myname="karmen"
+                const mymane="Luious"
+                if(this.password==mypassword&&this.name==myname&&this.mane==mymane)
+                {
+                    alert("登录成功")
+                    window.location.href = '简易版论坛.html';
+                    
+                }
+                else{
+                    alert("登录失败")
+                }
+            }
+        }
+
+    })
+</script>
+<style>
+    body{
+        background:url("2e61ec444aab3b3824e4959522a55f6feba1b7d4.jpg@1192w.webp")
+    }
+    #int{
+
+        margin: auto;
+        margin-top: 200px;
+        text-align: center;
+        margin-left: 2;
+        border: 2px solid red;
+        border-radius: 15px;
+        background-color: blueviolet;
+        width: 300px;
+        height: 300px;
+    }
+    h1{
+        color: white;
+    }
+</style>
+</html>
